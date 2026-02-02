@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>ASSIGNMENT2026</title>
+
+    <!-- Heart favicon -->
+    <link rel="icon" href="https://emojiapi.dev/api/v1/2764.svg">
+
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background: #ffd6e7; /* light pink */
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          margin: 0;
+        }
+
+        .card {
+          background: #ffffff;
+          padding: 70px 80px;
+          border-radius: 25px;
+          box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+          text-align: center;
+          width: 550px;
+        }
+
+        h1 {
+          color: #e63946;
+          font-size: 90px;
+          margin-bottom: 30px;
+        }
+
+        p {
+          font-size: 40px;
+          margin-bottom: 45px;
+          font-weight: bold;
+        }
+
+        .buttons {
+          display: flex;
+          justify-content: center;
+          gap: 30px;
+        }
+
+        button {
+          padding: 25px 50px;
+          border-radius: 999px;
+          border: none;
+          cursor: pointer;
+          font-size: 35px;
+          font-weight: bold;
+          transition: transform 0.1s ease, font-size 0.2s ease, padding 0.2s ease;
+        }
+
+        #yesBtn {
+          background: #e63946;
+          color: white;
+        }
+
+        #noBtn {
+          background: #f1faee;
+          color: #1d3557;
+          position: relative;
+        }
+
+        #response {
+          margin-top: 35px;
+          font-size: 32px;
+          color: #1d3557;
+          min-height: 40px;
+          font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>💘</h1>
+    <p>Hal will you go out with me on Valentine’s Day?</p>
+
+    <div class="buttons">
+        <button id="yesBtn">YES</button>
+        <button id="noBtn">NO</button>
+    </div>
+
+    <div id="response"></div>
+</div>
+
+<script>
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const response = document.getElementById('response');
+
+    let noClicks = 0;
+
+    const messages = [
+      "Are you sure?",
+      "Are you really sure?",
+      "Final decision?",
+      "This is the last one",
+      "Okay di wag GOLD KABA"
+    ];
+
+    yesBtn.addEventListener('click', () => {
+      response.textContent = "Happy Hearts Day!❤️";
+    });
+
+    noBtn.addEventListener('click', () => {
+
+      // 1. Show message in order
+      if (noClicks < messages.length) {
+        response.textContent = messages[noClicks];
+      } else {
+        response.textContent = "😢";
+      }
+
+      // 2. Shrink NO button
+      noClicks++;
+      let newFont = 35 - noClicks * 4;
+      let newPad = 25 - noClicks * 2;
+
+      if (newFont < 10) newFont = 10;
+      if (newPad < 5) newPad = 5;
+
+      noBtn.style.fontSize = newFont + "px";
+      noBtn.style.padding = newPad + "px " + (newPad * 2) + "px";
+
+      // 3. Grow YES button
+      let yesFont = parseInt(window.getComputedStyle(yesBtn).fontSize);
+      let yesPad = parseInt(window.getComputedStyle(yesBtn).padding);
+
+      yesBtn.style.fontSize = (yesFont + 4) + "px";
+      yesBtn.style.padding = (yesPad + 2) + "px " + (yesPad + 4) + "px";
+
+      // 4. Run away instantly
+      const randomX = Math.random() * 300 - 150;
+      const randomY = Math.random() * 300 - 150;
+
+      noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+    });
+</script>
+</body>
+</html>
