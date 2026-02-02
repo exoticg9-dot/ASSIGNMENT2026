@@ -4,12 +4,13 @@
     <meta charset="UTF-8" />
     <title>ASSIGNMENT2026</title>
 
+    <!-- Heart favicon -->
     <link rel="icon" href="https://emojiapi.dev/api/v1/2764.svg">
 
     <style>
         body {
           font-family: Arial, sans-serif;
-          background: #ffd6e7;
+          background: #ffd6e7; /* light pink */
           display: flex;
           justify-content: center;
           align-items: center;
@@ -108,7 +109,7 @@
 
     noBtn.addEventListener('click', () => {
 
-      // 1. Show message FIRST
+      // 1. Show message in order
       if (noClicks < messages.length) {
         response.textContent = messages[noClicks];
       } else {
@@ -126,7 +127,14 @@
       noBtn.style.fontSize = newFont + "px";
       noBtn.style.padding = newPad + "px " + (newPad * 2) + "px";
 
-      // 3. THEN run away instantly
+      // 3. Grow YES button
+      let yesFont = parseInt(window.getComputedStyle(yesBtn).fontSize);
+      let yesPad = parseInt(window.getComputedStyle(yesBtn).padding);
+
+      yesBtn.style.fontSize = (yesFont + 4) + "px";
+      yesBtn.style.padding = (yesPad + 2) + "px " + (yesPad + 4) + "px";
+
+      // 4. Run away instantly
       const randomX = Math.random() * 300 - 150;
       const randomY = Math.random() * 300 - 150;
 
