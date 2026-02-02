@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>ASSIGNMENT2026</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background: #ffd6e7; /* light pink */
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          margin: 0;
+        }
+
+        .card {
+          background: #ffffff;
+          padding: 70px 80px;
+          border-radius: 25px;
+          box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+          text-align: center;
+          width: 550px;
+          transition: all 0.3s ease;
+        }
+
+        h1 {
+          color: #e63946;
+          font-size: 90px;
+          margin-bottom: 30px;
+        }
+
+        p {
+          font-size: 40px;
+          margin-bottom: 45px;
+          font-weight: bold;
+        }
+
+        .buttons {
+          display: flex;
+          justify-content: center;
+          gap: 30px;
+        }
+
+        button {
+          padding: 25px 50px;
+          border-radius: 999px;
+          border: none;
+          cursor: pointer;
+          font-size: 35px;
+          font-weight: bold;
+          transition: transform 0.1s ease, font-size 0.2s ease, padding 0.2s ease;
+        }
+
+        #yesBtn {
+          background: #e63946;
+          color: white;
+        }
+
+        #noBtn {
+          background: #f1faee;
+          color: #1d3557;
+        }
+
+        #response {
+          margin-top: 35px;
+          font-size: 32px;
+          color: #1d3557;
+          min-height: 40px;
+          font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="card" id="card">
+    <h1>💘</h1>
+    <p>Will you go out with me on Valentine’s Day?</p>
+
+    <div class="buttons">
+        <button id="yesBtn">YES</button>
+        <button id="noBtn">NO</button>
+    </div>
+
+    <div id="response"></div>
+</div>
+
+<script>
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const response = document.getElementById('response');
+
+    let noClicks = 0;
+    const messages = [
+      "Are you sure?",
+      "Are you really sure?",
+      "Final decision?",
+      "This is the last one",
+      "Okay fine 😭"
+    ];
+
+    yesBtn.addEventListener('click', () => {
+      response.textContent = "Happy Hearts Day, ikaw akong gi‑think.❤️";
+    });
+
+    noBtn.addEventListener('click', () => {
+      if (noClicks < messages.length) {
+        response.textContent = messages[noClicks];
+
+        // shrink NO button
+        let noSize = 35 - noClicks * 6;
+        noBtn.style.fontSize = noSize + "px";
+        noBtn.style.padding = (25 - noClicks * 3) + "px " + (50 - noClicks * 6) + "px";
+
+        // grow YES button
+        let yesSize = 35 + noClicks * 6;
+        yesBtn.style.fontSize = yesSize + "px";
+        yesBtn.style.padding = (25 + noClicks * 3) + "px " + (50 + noClicks * 6) + "px";
+
+        noClicks++;
+      } else {
+        response.textContent = "😢";
+      }
+    });
+</script>
+</body>
+</html>
