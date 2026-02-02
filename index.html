@@ -4,13 +4,12 @@
     <meta charset="UTF-8" />
     <title>ASSIGNMENT2026</title>
 
-    <!-- Heart favicon -->
     <link rel="icon" href="https://emojiapi.dev/api/v1/2764.svg">
 
     <style>
         body {
           font-family: Arial, sans-serif;
-          background: #ffd6e7; /* light pink */
+          background: #ffd6e7;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -25,7 +24,6 @@
           box-shadow: 0 10px 25px rgba(0,0,0,0.15);
           text-align: center;
           width: 550px;
-          transition: all 0.3s ease;
         }
 
         h1 {
@@ -64,6 +62,7 @@
         #noBtn {
           background: #f1faee;
           color: #1d3557;
+          position: relative;
         }
 
         #response {
@@ -76,7 +75,7 @@
     </style>
 </head>
 <body>
-<div class="card" id="card">
+<div class="card">
     <h1>💘</h1>
     <p>Will you go out with me on Valentine’s Day?</p>
 
@@ -94,6 +93,7 @@
     const response = document.getElementById('response');
 
     let noClicks = 0;
+
     const messages = [
       "Are you sure?",
       "Are you really sure?",
@@ -107,30 +107,30 @@
     });
 
     noBtn.addEventListener('click', () => {
+
+      // 1. Show message FIRST
       if (noClicks < messages.length) {
         response.textContent = messages[noClicks];
-
-        // shrink NO button
-        let noSize = 35 - noClicks * 6;
-        noBtn.style.fontSize = noSize + "px";
-        noBtn.style.padding = (25 - noClicks * 3) + "px " + (50 - noClicks * 6) + "px";
-
-        // grow YES button
-        let yesSize = 35 + noClicks * 6;
-        yesBtn.style.fontSize = yesSize + "px";
-        yesBtn.style.padding = (25 + noClicks * 3) + "px " + (50 + noClicks * 6) + "px";
-
-        noClicks++;
       } else {
-        // NO button runs away
-        const randomX = Math.random() * 300 - 150;
-        const randomY = Math.random() * 300 - 150;
-
-        noBtn.style.position = "relative";
-        noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
-
         response.textContent = "😢";
       }
+
+      // 2. Shrink NO button
+      noClicks++;
+      let newFont = 35 - noClicks * 4;
+      let newPad = 25 - noClicks * 2;
+
+      if (newFont < 10) newFont = 10;
+      if (newPad < 5) newPad = 5;
+
+      noBtn.style.fontSize = newFont + "px";
+      noBtn.style.padding = newPad + "px " + (newPad * 2) + "px";
+
+      // 3. THEN run away instantly
+      const randomX = Math.random() * 300 - 150;
+      const randomY = Math.random() * 300 - 150;
+
+      noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
     });
 </script>
 </body>
