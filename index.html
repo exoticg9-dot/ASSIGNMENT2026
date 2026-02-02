@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <title>ASSIGNMENT2026</title>
+
+    <!-- Heart favicon -->
+    <link rel="icon" href="https://emojiapi.dev/api/v1/2764.svg">
+
     <style>
         body {
           font-family: Arial, sans-serif;
@@ -118,6 +122,13 @@
 
         noClicks++;
       } else {
+        // NO button runs away
+        const randomX = Math.random() * 300 - 150;
+        const randomY = Math.random() * 300 - 150;
+
+        noBtn.style.position = "relative";
+        noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+
         response.textContent = "😢";
       }
     });
